@@ -27,7 +27,7 @@ query {
       "imageUrl": null,
       "image": {
         "url": "https:///www.example.com/abc.png",
-        "thumbnailUrl": "https:///www.example.com/abc-xs-xs.png"
+        "thumbnailUrl": "https:///www.example.com/abc-600-600.png"
       }
     }
   }
