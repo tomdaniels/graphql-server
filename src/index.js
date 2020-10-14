@@ -39,7 +39,6 @@ const mocks = {
     }),
     Image: () => ({
         url: () => 'https:///www.example.com/abc.png',
-        thumbnailUrl: () => 'https:///www.example.com/abc-xs-xs.png'
     }),
 };
 
@@ -56,7 +55,10 @@ const resolvers = {
             }
             return foreignDescription;
         }
-    }
+    },
+    Image: {
+        thumbnailUrl: (_, {width, height}) => `https:///www.example.com/abc-${width}-${height}.png`,
+    },
 }
 
 const server = new ApolloServer({
