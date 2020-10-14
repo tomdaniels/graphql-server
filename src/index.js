@@ -10,7 +10,7 @@ const typeDefs = gql`
     type Product {
         name: String
         description: String
-        imageUrl: String
+        imageUrl: String @deprecated(reason: "Use \`image { url }\`.")
         image: Image
     }
 
@@ -23,6 +23,12 @@ const typeDefs = gql`
 
 const mocks = {
     String: () => "mock string",
+    Product: () => ({
+        imageUrl: () => null
+    }),
+    Image: () => ({
+        thumbnailUrl: () => 'https:///www.example.com/abc-xs-xs.png'
+    }),
 };
 
 const resolvers = {
