@@ -7,9 +7,20 @@ const typeDefs = gql`
         thumbnailUrl(width: Int, height: Int): String
     }
 
+    enum ProductDescriptionFormat {
+        TEXT
+        HTML
+    }
+
+    enum Locales {
+        EN
+        FR
+        DE
+    }
+
     type Product {
         name: String
-        description: String
+        description(format: ProductDescriptionFormat = TEXT, locale: Locales = EN): String
         imageUrl: String @deprecated(reason: "Use \`image { url }\`.")
         image: Image
     }
@@ -27,6 +38,7 @@ const mocks = {
         imageUrl: () => null
     }),
     Image: () => ({
+        url: () => 'https:///www.example.com/abc.png',
         thumbnailUrl: () => 'https:///www.example.com/abc-xs-xs.png'
     }),
 };
@@ -34,7 +46,7 @@ const mocks = {
 const resolvers = {
     Query: {
         helloTwo: () => 'Real hello'
-    }
+    },
 }
 
 const server = new ApolloServer({
