@@ -1,14 +1,28 @@
 const { ApolloServer, gql } = require('apollo-server');
 
 const typeDefs = gql`
+    type Image {
+        url: String
+        description: String
+        thumbnailUrl(width: Int, height: Int): String
+    }
+
+    type Product {
+        name: String
+        description: String
+        imageUrl: String
+        image: Image
+    }
+
     type Query {
         hello: String
         helloTwo: String
+        product(id: ID!): Product
     }
 `;
 
 const mocks = {
-    String: () => "hello",
+    String: () => "mock string",
 };
 
 const resolvers = {
