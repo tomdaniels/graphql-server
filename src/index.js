@@ -47,6 +47,16 @@ const resolvers = {
     Query: {
         helloTwo: () => 'Real hello'
     },
+    Product: {
+        description: (_, { locale }) => {
+            const foreignDescription = locale === 'FR' && 'bonjour le monde' || locale === 'DE' && 'hallo wereld'
+            
+            if (locale === 'EN') {
+                return 'hello world'
+            }
+            return foreignDescription;
+        }
+    }
 }
 
 const server = new ApolloServer({
